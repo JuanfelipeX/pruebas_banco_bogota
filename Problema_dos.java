@@ -1,24 +1,30 @@
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
 
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        Map<Integer, Integer> c = new HashMap<>();
+        int[] arr = new int[5];
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 5; i++) {
             int num = scanner.nextInt();
-            c.put(num, c.getOrDefault(num, 0) + 1);
+            arr[i] = num;
         }
-        int ans = 0;
-        for (int x : c.keySet()) {
-            ans += c.get(x) / 2;
-        }
-        System.out.println(ans);
+
+        miniMaxSum(arr);
+    }
+
+    public static void miniMaxSum(int[] arr) {
+        int sum = Arrays.stream(arr).sum(); // Calcular la suma de todos los elementos del arreglo
+        int max = sum - Arrays.stream(arr).max().getAsInt(); // Calcular la suma menos el valor máximo
+        int min = sum - Arrays.stream(arr).min().getAsInt(); // Calcular la suma menos el valor mínimo
+
+        System.out.println(max + " " + min);
     }
 }
 
-//9 10 26 20 16 10 30 50 16 20
-//3
+//1 2 3 4 5
+//10 14
+
+//1 3 5 7 9
+//16 24
